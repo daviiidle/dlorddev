@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { siteContent } from "@/content/siteContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "David Lord - Automation Engineer",
-  description: "Personal website showcasing automation engineering projects and expertise",
+  title: siteContent.metadata.title,
+  description: siteContent.metadata.description,
 };
 
 export default function RootLayout({
