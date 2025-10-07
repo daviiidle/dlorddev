@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { siteContent } from "@/content/siteContent";
 
 export default function Home() {
@@ -46,54 +45,85 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-light text-center text-black mb-16 tracking-tight">
             {siteContent.projects.title}
           </h2>
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {siteContent.projects.items.map((project, index) => (
-              <div key={index} className="group">
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-200">
-                  <div className="flex-1 mb-4 md:mb-0">
-                    <h3 className="text-xl font-medium text-black mb-2">
-                      {project.name}
-                    </h3>
-                    <p className="text-gray-600 mb-3 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="text-xs text-gray-500"
-                        >
-                          {tech}{techIndex < project.technologies.length - 1 ? ' · ' : ''}
-                        </span>
-                      ))}
+              <a
+                key={index}
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200"
+              >
+                {/* Project Image */}
+                {project.image ? (
+                  <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                    <div className="text-6xl opacity-20">
+                      {project.technologies[0] === 'JavaScript' ? '🟨' :
+                       project.technologies[0] === 'TypeScript' ? '🔷' :
+                       project.technologies[0] === 'Python' ? '🐍' :
+                       project.technologies[0] === 'Java' ? '☕' :
+                       '📦'}
                     </div>
                   </div>
-                  <div className="flex gap-4 items-center">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-black transition-colors text-sm"
-                    >
-                      View Code →
-                    </a>
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-700 transition-colors text-sm"
+                )}
+
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
+                      </svg>
+                      <h3 className="text-base font-medium text-blue-600 group-hover:text-blue-700">
+                        {project.name}
+                      </h3>
+                    </div>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                      Public
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="text-xs text-gray-700 bg-gray-100 px-2.5 py-1 rounded-full"
                       >
-                        Live Demo →
-                      </a>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-1.5">
+                      <span className={`w-3 h-3 rounded-full ${
+                        project.technologies[0] === 'JavaScript' ? 'bg-yellow-400' :
+                        project.technologies[0] === 'TypeScript' ? 'bg-blue-600' :
+                        project.technologies[0] === 'Python' ? 'bg-blue-500' :
+                        project.technologies[0] === 'Java' ? 'bg-orange-500' :
+                        'bg-gray-400'
+                      }`}></span>
+                      <span>{project.technologies[0]}</span>
+                    </div>
+                    {project.demoUrl && (
+                      <span className="text-blue-600">Live Demo</span>
                     )}
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

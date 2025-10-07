@@ -4,6 +4,7 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   demoUrl?: string;
+  image?: string;
 }
 
 export interface SiteContent {
@@ -64,8 +65,8 @@ export const siteContent: SiteContent = {
     },
   },
   hero: {
-    title: "Hybrid QA Engineer",
-    subtitle: "Building robust test automation frameworks and CI/CD pipelines with TypeScript, Playwright, and modern DevOps practices",
+    title: "Quality Assurance & Automation Engineer",
+    subtitle: "QA and Automation Engineer with expertise in functional and automation testing across banking, finance, and retail. Building scalable test frameworks with Python, Behave, Cucumber, and modern CI/CD pipelines. Passionate about combining structured test design with AI-assisted tooling to deliver reliable, high-performing platforms.",
     cta: {
       primary: "View My Work",
       secondary: "GitHub",
@@ -80,23 +81,46 @@ export const siteContent: SiteContent = {
     title: "Featured Projects",
     items: [
       {
-        name: "API Test Automation Framework",
-        description: "Playwright-based framework for automated API testing with comprehensive reporting",
-        technologies: ["TypeScript", "Playwright", "Node.js", "Docker"],
-        githubUrl: "https://github.com/yourusername/api-automation",
-        demoUrl: "https://api-automation-demo.vercel.app",
+        name: "Cypress-Automation-Framework",
+        description: "JavaScript-based E2E testing framework utilizing Cypress, Page Object Model, Faker.js for data generation, Mochawesome reporting, and GitHub Actions CI/CD integration.",
+        technologies: ["JavaScript", "Cypress", "POM", "Faker.js", "Mochawesome", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/Cypress-Automation-Framework.",
+        image: "/images/cypress.png",
       },
       {
-        name: "CI/CD Pipeline Orchestrator",
-        description: "Automated deployment pipeline with testing, security scanning, and monitoring",
-        technologies: ["Python", "GitHub Actions", "Docker", "AWS"],
-        githubUrl: "https://github.com/yourusername/pipeline-orchestrator",
+        name: "dlorddev",
+        description: "Personal portfolio website showcasing automation frameworks and projects",
+        technologies: ["TypeScript", "Next.js", "React", "TailwindCSS", "Vercel"],
+        githubUrl: "https://github.com/daviiidle/dlorddev",
+        demoUrl: "https://dlorddev.vercel.app",
       },
       {
-        name: "Web UI Test Suite",
-        description: "Comprehensive end-to-end testing suite for web applications",
-        technologies: ["TypeScript", "Playwright", "Jest", "React"],
-        githubUrl: "https://github.com/yourusername/ui-test-suite",
+        name: "Playwright-Automation-Framework",
+        description: "TypeScript-based cross-browser automation framework with Page Object Model, test fixtures, parallel execution, comprehensive reporting, and automatic failure screenshots/videos.",
+        technologies: ["TypeScript", "Playwright", "POM", "Faker.js", "Allure", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/Playwright-Automation-Framework",
+        image: "/images/playwright.png",
+      },
+      {
+        name: "Python-API-Automation-Framework",
+        description: "BDD-driven API testing framework using Python, Behave, Poetry, Wiremock for mocking, Faker for data generation, Allure reporting, and GitHub Actions CI/CD.",
+        technologies: ["Python", "Behave", "BDD", "Poetry", "WireMock", "Faker", "Allure", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/Python-API-Automation-Framework",
+        image: "/images/python-api.png",
+      },
+      {
+        name: "Wiremock",
+        description: "Banking API stub service built with WireMock, Java 17, Python, Pytest for testing, response templating, dynamic data generation, and cloud deployment on Railway/Render.",
+        technologies: ["Python", "Java 17", "WireMock", "Pytest", "Railway", "Render"],
+        githubUrl: "https://github.com/daviiidle/Wiremock",
+        image: "/images/wiremock.png",
+      },
+      {
+        name: "Selenium-Automation-Framework",
+        description: "Java-based framework with Selenium WebDriver, TestNG, Maven, Page Object Model, Factory Pattern, ExtentReports/Allure reporting, Log4j2, and Java Faker for test data.",
+        technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "Log4j2"],
+        githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
+        image: "/images/selenium.png",
       },
     ],
   },
