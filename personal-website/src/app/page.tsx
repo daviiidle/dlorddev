@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { siteContent } from "@/content/siteContent";
 
 export default function Home() {
@@ -61,10 +62,13 @@ export default function Home() {
                 {/* Project Image */}
                 {project.image ? (
                   <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      priority={index < 2}
                     />
                   </div>
                 ) : (
