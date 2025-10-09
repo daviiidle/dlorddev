@@ -94,18 +94,18 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="py-24 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl font-light text-black mb-16 tracking-tight"
-          >
-            {siteContent.projects.title}
-          </motion.h2>
-        </div>
-        <div className="projects-grid-wrapper">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+          <div className="max-w-4xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-light text-black mb-16 tracking-tight text-left"
+            >
+              {siteContent.projects.title}
+            </motion.h2>
+          </div>
           <div className="projects-grid">
             {siteContent.projects.items.map((project, index) => (
               <motion.article
