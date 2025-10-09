@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "cf-build": "npx @cloudflare/next-on-pages@1 build",
     "start": "next start",
     "lint": "eslint"
   },
