@@ -1,163 +1,267 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { siteContent } from "@/content/siteContent";
 
 export default function Home() {
+  useEffect(() => {
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
+  }, []);
+
+  const heroTitleParts = siteContent.hero.title.split(" & ");
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="font-medium text-lg text-black">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50"
+      >
+        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+          <div className="flex justify-between h-20 items-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-base font-medium tracking-[0.2em] uppercase text-gray-900"
+            >
               {siteContent.navigation.brand}
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#about" className="text-gray-600 hover:text-black transition-colors text-sm">
-                {siteContent.navigation.links.about}
-              </a>
-              <a href="#projects" className="text-gray-600 hover:text-black transition-colors text-sm">
-                {siteContent.navigation.links.projects}
-              </a>
-              <a href="#contact" className="text-gray-600 hover:text-black transition-colors text-sm">
-                {siteContent.navigation.links.contact}
-              </a>
-            </div>
+            </motion.div>
+            <motion.a
+              href="#contact"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              className="hidden md:inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-xs font-semibold tracking-[0.28em] uppercase text-gray-900 hover:bg-gray-100 transition-colors"
+            >
+              {siteContent.navigation.links.contact}
+            </motion.a>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
-      <section id="about" className="pt-32 pb-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-6xl md:text-7xl font-light text-black mb-8 tracking-tight">
-            {siteContent.hero.title}
-          </h1>
-          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+      <section
+        id="about"
+        className="relative isolate overflow-hidden bg-gray-100 pt-40 pb-32"
+      >
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+            className="hero-title text-left text-5xl sm:text-6xl md:text-[4.6rem] leading-[1.04] font-medium text-gray-900 max-w-3xl"
+          >
+            {heroTitleParts.length === 2 ? (
+              <>
+                <span className="hero-title-fragment">{heroTitleParts[0]}</span>{" "}
+                <span className="hero-ampersand" aria-hidden="true">
+                  <span>&</span>
+                </span>
+                <br />
+                <span className="hero-title-fragment">{heroTitleParts[1]}</span>
+              </>
+            ) : (
+              siteContent.hero.title
+            )}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            className="mt-8 max-w-2xl text-left text-base md:text-lg text-gray-600 leading-relaxed"
+          >
             {siteContent.hero.subtitle}
-          </p>
-          <a
+          </motion.p>
+          <motion.a
             href="#projects"
-            className="inline-block text-blue-600 hover:text-blue-700 transition-colors text-sm font-medium"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-12 inline-flex items-center text-sm font-semibold tracking-[0.28em] uppercase text-gray-900 hover:text-black transition-colors"
           >
             {siteContent.hero.cta.primary} →
-          </a>
+          </motion.a>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-light text-center text-black mb-16 tracking-tight">
+      <section id="projects" className="py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-light text-black mb-16 tracking-tight"
+          >
             {siteContent.projects.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          </motion.h2>
+        </div>
+        <div className="projects-grid-wrapper">
+          <div className="projects-grid">
             {siteContent.projects.items.map((project, index) => (
-              <a
-                key={index}
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200"
+              <motion.article
+                key={project.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ scale: 1.02 }}
+                className="project-tile"
               >
-                {/* Project Image */}
-                {project.image ? (
-                  <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                <div className="project-media">
+                  {project.image ? (
                     <Image
                       src={project.image}
                       alt={project.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
+                      className="project-media__image"
                       priority={index < 2}
                     />
-                  </div>
-                ) : (
-                  <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div className="text-6xl opacity-20">
-                      {project.technologies[0] === 'JavaScript' ? '🟨' :
-                       project.technologies[0] === 'TypeScript' ? '🔷' :
-                       project.technologies[0] === 'Python' ? '🐍' :
-                       project.technologies[0] === 'Java' ? '☕' :
-                       '📦'}
+                  ) : (
+                    <div className="project-media__placeholder">
+                      {project.technologies[0] === "JavaScript"
+                        ? "🟨"
+                        : project.technologies[0] === "TypeScript"
+                        ? "🔷"
+                        : project.technologies[0] === "Python"
+                        ? "🐍"
+                        : project.technologies[0] === "Java"
+                        ? "☕"
+                        : "📦"}
                     </div>
-                  </div>
-                )}
-
-                {/* Content */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
-                      </svg>
-                      <h3 className="text-base font-medium text-blue-600 group-hover:text-blue-700">
-                        {project.name}
-                      </h3>
-                    </div>
-                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                      Public
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed line-clamp-2">
-                    {project.description}
+                  )}
+                </div>
+                <div className="project-overlay" />
+                <div className="project-content">
+                  <p className="project-meta">
+                    {project.technologies.slice(0, 3).join(" • ")}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="text-xs text-gray-700 bg-gray-100 px-2.5 py-1 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
-                    <div className="flex items-center gap-1.5">
-                      <span className={`w-3 h-3 rounded-full ${
-                        project.technologies[0] === 'JavaScript' ? 'bg-yellow-400' :
-                        project.technologies[0] === 'TypeScript' ? 'bg-blue-600' :
-                        project.technologies[0] === 'Python' ? 'bg-blue-500' :
-                        project.technologies[0] === 'Java' ? 'bg-orange-500' :
-                        'bg-gray-400'
-                      }`}></span>
-                      <span>{project.technologies[0]}</span>
-                    </div>
+                  <h3 className="project-title">{project.name}</h3>
+                  <p className="project-description">{project.description}</p>
+                  <div className="project-actions">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-button project-button--primary"
+                    >
+                      View Code
+                    </a>
                     {project.demoUrl && (
-                      <span className="text-blue-600">Live Demo</span>
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-button project-button--secondary"
+                      >
+                        Live Demo
+                      </a>
                     )}
                   </div>
                 </div>
-              </a>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Certifications */}
+      <section id="certifications" className="bg-white py-20">
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="certifications-card"
+          >
+            <div className="certifications-card__media">
+              <Image
+                src="/images/certifications.png"
+                alt="ISTQB CTFL 4.0 and iSQI Certified Agile Essentials badges"
+                fill
+                sizes="(max-width: 768px) 100vw, 520px"
+                className="certifications-card__image"
+              />
+            </div>
+            <div className="certifications-card__content">
+              <p className="certifications-card__eyebrow">Certifications</p>
+              <h2 className="certifications-card__heading">
+                Validated expertise in QA fundamentals and agile delivery.
+              </h2>
+              <p className="certifications-card__description">
+                ISTQB® Certified Tester Foundation Level (CTFL 4.0) and iSQI® Certified Agile
+                Essentials.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-light text-black mb-6 tracking-tight">
+      <section
+        id="contact"
+        className="relative isolate overflow-hidden bg-gray-100 py-32"
+      >
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-left text-sm font-semibold tracking-[0.42em] uppercase text-gray-500"
+          >
             {siteContent.contact.title}
-          </h2>
-          <p className="text-gray-600 mb-12 leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mt-6 max-w-2xl text-left text-xl md:text-[1.45rem] leading-relaxed text-gray-900"
+          >
             {siteContent.contact.description}
-          </p>
-          <div className="flex justify-center gap-8">
-            <a
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-12 flex flex-wrap items-center gap-4"
+          >
+            <motion.a
               href={`mailto:${siteContent.contact.email.address}`}
-              className="text-blue-600 hover:text-blue-700 transition-colors text-sm"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="contact-pill"
             >
-              {siteContent.contact.email.text} →
-            </a>
-            <a
+              <span>{siteContent.contact.email.text}</span>
+            </motion.a>
+            <motion.a
               href={siteContent.contact.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-black transition-colors text-sm"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="contact-pill contact-pill--secondary"
             >
-              {siteContent.contact.linkedin.text} →
-            </a>
-          </div>
+              <span>{siteContent.contact.linkedin.text}</span>
+            </motion.a>
+          </motion.div>
         </div>
       </section>
     </div>

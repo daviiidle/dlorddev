@@ -85,7 +85,7 @@ export const siteContent: SiteContent = {
         description: "JavaScript-based E2E testing framework utilizing Cypress, Page Object Model, Faker.js for data generation, Mochawesome reporting, and GitHub Actions CI/CD integration.",
         technologies: ["JavaScript", "Cypress", "POM", "Faker.js", "Mochawesome", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Cypress-Automation-Framework.",
-        image: "/images/cypress.webp",
+        image: "/images/selenium.webp",
       },
       {
         name: "dlorddev",
@@ -121,7 +121,7 @@ export const siteContent: SiteContent = {
         description: "Java-based framework with Selenium WebDriver, TestNG, Maven, Page Object Model, Factory Pattern, ExtentReports/Allure reporting, Log4j2, and Java Faker for test data.",
         technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "Log4j2"],
         githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
-        image: "/images/selenium.webp",
+        image: "/images/cypress.webp",
       },
     ],
   },
@@ -130,11 +130,11 @@ export const siteContent: SiteContent = {
     description: "Interested in automation, testing, or have a project in mind? I'd love to hear from you.",
     email: {
       text: "Email Me",
-      address: "your.email@example.com",
+      address: "daviiidle@gmail.com",
     },
     linkedin: {
       text: "LinkedIn",
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/david-le-2a3456a9/",
     },
   },
 };
