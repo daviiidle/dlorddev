@@ -10,7 +10,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) in your browser. The 
 ## Production build
 
 ```bash
-npm run build:next
+npm run build
 npm run start
 ```
 
@@ -22,10 +22,10 @@ npm run start
 
 | Field                 | Value                     |
 | --------------------- | ------------------------- |
-| Build command         | `npm run build`           |
+| Build command         | `npx @cloudflare/next-on-pages@1 build` |
 | Build output directory| `.vercel/output/static`   |
 
 4. (Optional, recommended) Add environment variable `NODE_VERSION` matching your local Node (e.g. `20.17.0`).
-5. Click **Save and Deploy**. The build script runs Next.js followed by the Next on Pages adapter, creating `.vercel/output/static`; all `public/` assets deploy automatically.
+5. Click **Save and Deploy**. Alternatively, you can use `npm run cf:build` locally (runs the same Next on Pages adapter). The command produces `.vercel/output/static`, and all `public/` assets deploy automatically.
 
 After deployment visit the provided `*.pages.dev` URL to verify the site, then add a custom domain from the Pages dashboard if desired.
