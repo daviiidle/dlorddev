@@ -92,7 +92,6 @@ export const siteContent: SiteContent = {
         description: "Personal portfolio website showcasing automation frameworks and projects",
         technologies: ["TypeScript", "Next.js", "React", "TailwindCSS", "Vercel"],
         githubUrl: "https://github.com/daviiidle/dlorddev",
-        demoUrl: "https://dlorddev.vercel.app",
         image: "/images/dlorddev.webp",
       },
       {

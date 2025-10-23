@@ -51,44 +51,65 @@ export default function Home() {
         className="relative isolate overflow-hidden bg-gray-100 pt-40 pb-32"
       >
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-            className="hero-title text-left text-5xl sm:text-6xl md:text-[4.6rem] leading-[1.04] font-medium text-gray-900 max-w-3xl"
-          >
-            {heroTitleParts.length === 2 ? (
-              <>
-                <span className="hero-title-fragment">{heroTitleParts[0]}</span>{" "}
-                <span className="hero-ampersand" aria-hidden="true">
-                  <span>&</span>
-                </span>
-                <br />
-                <span className="hero-title-fragment">{heroTitleParts[1]}</span>
-              </>
-            ) : (
-              siteContent.hero.title
-            )}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-            className="mt-8 max-w-2xl text-left text-base md:text-lg text-gray-600 leading-relaxed"
-          >
-            {siteContent.hero.subtitle}
-          </motion.p>
-          <motion.a
-            href="#projects"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-12 inline-flex items-center text-sm font-semibold tracking-[0.28em] uppercase text-gray-900 hover:text-black transition-colors"
-          >
-            {siteContent.hero.cta.primary} →
-          </motion.a>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+            <div className="flex-1">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                className="hero-title text-left text-5xl sm:text-6xl md:text-[4.6rem] leading-[1.04] font-medium text-gray-900"
+              >
+                {heroTitleParts.length === 2 ? (
+                  <>
+                    <span className="hero-title-fragment">{heroTitleParts[0]}</span>{" "}
+                    <span className="hero-ampersand" aria-hidden="true">
+                      <span>&</span>
+                    </span>
+                    <br />
+                    <span className="hero-title-fragment">{heroTitleParts[1]}</span>
+                  </>
+                ) : (
+                  siteContent.hero.title
+                )}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                className="mt-8 max-w-2xl text-left text-base md:text-lg text-gray-600 leading-relaxed"
+              >
+                {siteContent.hero.subtitle}
+              </motion.p>
+              <motion.a
+                href="#projects"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="mt-12 inline-flex items-center text-sm font-semibold tracking-[0.28em] uppercase text-gray-900 hover:text-black transition-colors"
+              >
+                {siteContent.hero.cta.primary} →
+              </motion.a>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+              className="flex-shrink-0"
+            >
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl">
+                <Image
+                  src="/images/portrait.jpg"
+                  alt="David Le"
+                  fill
+                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

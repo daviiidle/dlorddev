@@ -1,0 +1,19 @@
+2025-10-10 20:09:09,955 - __main__ - INFO - [client.py:197] - Discovered 15 audio input devices
+2025-10-10 20:09:09,966 - __main__ - INFO - [client.py:684] - HighPerformanceWhisperClient v2.0.0 initialized
+2025-10-10 20:09:09,977 - __main__ - INFO - [client.py:748] - Async event loop started
+2025-10-10 20:09:09,978 - __main__ - INFO - [client.py:494] - Initialized async network session with dynamic timeout support
+2025-10-10 20:09:10,020 - __main__ - INFO - [client.py:560] - Server connection successful: High-Performance Whisper Server with Ngrok is running
+2025-10-10 20:09:10,020 - __main__ - INFO - [client.py:829] - Server connected - RTX 3080 optimized: True
+2025-10-10 20:09:10,021 - __main__ - INFO - [client.py:1002] - Connected to high-performance server successfully
+2025-10-10 20:09:10,218 - __main__ - INFO - [client.py:1013] - High-Performance Whisper Client v2.0.0 started
+2025-10-10 20:09:10,218 - __main__ - INFO - [client.py:1014] - Press '`' to record audio (hold as long as needed)
+2025-10-10 20:09:10,218 - __main__ - INFO - [client.py:1015] - Quality preset: balanced
+2025-10-10 20:09:10,219 - __main__ - INFO - [client.py:1016] - Maximum recording duration: 5.0 minutes
+2025-10-10 20:09:39,741 - __main__ - ERROR - [client.py:209] - No audio device selected
+2025-10-10 20:09:39,748 - __main__ - ERROR - [client.py:768] - Failed to start recording
+2025-10-10 20:10:01,443 - __main__ - INFO - [client.py:720] - Settings saved successfully
+2025-10-10 20:10:01,446 - __main__ - INFO - [client.py:858] - Selected audio device: 1 (Microphone (BY-V))
+2025-10-10 20:10:30,861 - __main__ - INFO - [client.py:728] - Received signal 2, shutting down...
+2025-10-10 20:10:30,861 - __main__ - INFO - [client.py:970] - Shutting down client...
+2025-10-10 20:10:30,862 - __main__ - INFO - [client.py:361] - Audio processor cleanup completed
+2025-10-10 20:10:30,864 - __main__ - INFO - [client.py:987] - Client shutdown complete
