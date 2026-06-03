@@ -129,6 +129,13 @@ export const siteContent: SiteContent = {
         githubUrl: "https://github.com/daviiidle/Postman-Newman-Framework",
         image: "/images/python-api.webp",
       },
+      {
+        name: "Selenium-Automation-Framework",
+        description: "Enterprise-grade Selenium Java automation framework for DemoWebShop with Page Object Model, TestNG suites, reporting, driver management, test data utilities, and CI workflows.",
+        technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
+        image: "/images/selenium.webp",
+      },
     ],
   },
   contact: {
