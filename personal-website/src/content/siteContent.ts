@@ -136,6 +136,13 @@ export const siteContent: SiteContent = {
         githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
         image: "/images/selenium.webp",
       },
+      {
+        name: "Playwright-MCP-AI-Framework",
+        description: "AI-assisted browser automation framework using Microsoft's official Playwright MCP server for exploratory authoring, with deterministic Playwright TypeScript tests and scheduled CI.",
+        technologies: ["TypeScript", "Playwright", "MCP", "AI Automation", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/Playwright-MCP-AI-Framework",
+        image: "/images/playwright.webp",
+      },
     ],
   },
   contact: {
