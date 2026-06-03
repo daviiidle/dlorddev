@@ -37,14 +37,6 @@ export default function Home() {
       </motion.nav>
 
       <section id="about" className="hero-section">
-        <Image
-          src="/images/portrait.jpg"
-          alt="David Le"
-          fill
-          sizes="100vw"
-          className="hero-section__image"
-          priority
-        />
         <div className="hero-section__scrim" />
         <div className="section-inner hero-section__content">
           <motion.div
@@ -334,21 +326,38 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55 }}
+            className="profile-panel"
           >
-            <p className="section-kicker">{siteContent.contact.title}</p>
-            <h2>{siteContent.contact.description}</h2>
-            <div className="contact-actions">
-              <a className="button button--light" href={`mailto:${siteContent.contact.email.address}`}>
-                {siteContent.contact.email.text}
-              </a>
-              <a
-                className="button button--ghost"
-                href={siteContent.contact.linkedin.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {siteContent.contact.linkedin.text}
-              </a>
+            <div className="profile-panel__media">
+              <Image
+                src="/images/portrait.jpg"
+                alt="David Le"
+                fill
+                sizes="(max-width: 768px) 180px, 260px"
+                className="profile-panel__image"
+                priority
+              />
+            </div>
+            <div className="profile-panel__copy">
+              <p className="section-kicker">{siteContent.contact.title}</p>
+              <h2>{siteContent.contact.description}</h2>
+              <p>
+                Melbourne-based QA and automation engineer building CI-backed frameworks across
+                Playwright, Cypress, Selenium, API, BDD, Postman/Newman, and AI-assisted tooling.
+              </p>
+              <div className="contact-actions">
+                <a className="button button--light" href={`mailto:${siteContent.contact.email.address}`}>
+                  {siteContent.contact.email.text}
+                </a>
+                <a
+                  className="button button--ghost"
+                  href={siteContent.contact.linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {siteContent.contact.linkedin.text}
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
