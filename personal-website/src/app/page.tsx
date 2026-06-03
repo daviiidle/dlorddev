@@ -5,194 +5,289 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { siteContent } from "@/content/siteContent";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Home() {
   useEffect(() => {
-    // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
 
-  const heroTitleParts = siteContent.hero.title.split(" & ");
+  const { automationHealth } = siteContent;
+  const totalTech = automationHealth.technologies.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
+    <main className="site-shell">
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50"
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="site-nav"
       >
-        <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="flex justify-between h-20 items-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-base font-medium tracking-[0.2em] uppercase text-gray-900"
-            >
-              {siteContent.navigation.brand}
-            </motion.div>
-            <motion.a
-              href="#contact"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              className="hidden md:inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-xs font-semibold tracking-[0.28em] uppercase text-gray-900 hover:bg-gray-100 transition-colors"
-            >
-              {siteContent.navigation.links.contact}
-            </motion.a>
-          </div>
+        <a className="site-nav__brand" href="#about">
+          {siteContent.navigation.brand}
+        </a>
+        <div className="site-nav__links">
+          <a href="#health">{automationHealth.title}</a>
+          <a href="#projects">{siteContent.navigation.links.projects}</a>
+          <a href="#contact">{siteContent.navigation.links.contact}</a>
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
-      <section
-        id="about"
-        className="relative isolate overflow-hidden bg-gray-100 pt-40 pb-32"
-      >
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
-            <div className="flex-1">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-                className="hero-title text-left text-5xl sm:text-6xl md:text-[4.6rem] leading-[1.04] font-medium text-gray-900"
+      <section id="about" className="hero-section">
+        <Image
+          src="/images/portrait.jpg"
+          alt="David Le"
+          fill
+          sizes="100vw"
+          className="hero-section__image"
+          priority
+        />
+        <div className="hero-section__scrim" />
+        <div className="section-inner hero-section__content">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="hero-copy"
+          >
+            <p className="section-kicker">Hybrid QA Engineer</p>
+            <h1>{siteContent.hero.title}</h1>
+            <p>{siteContent.hero.subtitle}</p>
+            <div className="hero-actions">
+              <a className="button button--light" href="#projects">
+                {siteContent.hero.cta.primary}
+              </a>
+              <a
+                className="button button--ghost"
+                href="https://github.com/daviiidle"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {heroTitleParts.length === 2 ? (
-                  <>
-                    <span className="hero-title-fragment">{heroTitleParts[0]}</span>{" "}
-                    <span className="hero-ampersand" aria-hidden="true">
-                      <span>&</span>
-                    </span>
-                    <br />
-                    <span className="hero-title-fragment">{heroTitleParts[1]}</span>
-                  </>
-                ) : (
-                  siteContent.hero.title
-                )}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-                className="mt-8 max-w-2xl text-left text-base md:text-lg text-gray-600 leading-relaxed"
-              >
-                {siteContent.hero.subtitle}
-              </motion.p>
-              <motion.a
-                href="#projects"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-12 inline-flex items-center text-sm font-semibold tracking-[0.28em] uppercase text-gray-900 hover:text-black transition-colors"
-              >
-                {siteContent.hero.cta.primary} →
-              </motion.a>
+                GitHub
+              </a>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="flex-shrink-0"
-            >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl">
-                <Image
-                  src="/images/portrait.jpg"
-                  alt="David Le"
-                  fill
-                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
-                  className="object-cover"
-                  priority
-                />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
+            className="hero-proof"
+            aria-label="Automation portfolio summary"
+          >
+            {automationHealth.stats.map((stat) => (
+              <div key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+                <p>{stat.detail}</p>
               </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="health" className="section-band section-band--light">
+        <div className="section-inner">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+            className="section-heading"
+          >
+            <p className="section-kicker">{automationHealth.auditedAt}</p>
+            <h2>{automationHealth.title}</h2>
+            <p>{automationHealth.summary}</p>
+          </motion.div>
+
+          <div className="health-layout">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="health-table"
+            >
+              <div className="health-table__header">
+                <span>Framework</span>
+                <span>Status</span>
+                <span>Schedule</span>
+              </div>
+              {automationHealth.frameworks.map((framework) => (
+                <article key={framework.name} className="health-row">
+                  <div>
+                    <h3>{framework.name}</h3>
+                    <p>
+                      {framework.category} / {framework.stack}
+                    </p>
+                  </div>
+                  <span className="status-pill">
+                    <span aria-hidden="true" />
+                    {framework.status}
+                  </span>
+                  <div className="health-row__schedule">
+                    <code>{framework.schedule}</code>
+                    <p>{framework.latestRun}</p>
+                  </div>
+                </article>
+              ))}
             </motion.div>
+
+            <aside className="metrics-panel" aria-label="Automation metrics">
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: 0.15 }}
+                className="metric-card metric-card--dark"
+              >
+                <p className="metric-card__label">Latest audited CI</p>
+                <strong>100%</strong>
+                <span>8 of 8 framework pipelines passing</span>
+              </motion.div>
+
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: 0.2 }}
+                className="metric-card"
+              >
+                <h3>Capability Coverage</h3>
+                <div className="bar-chart">
+                  {automationHealth.capabilities.map((metric) => (
+                    <div key={metric.label} className="bar-chart__row">
+                      <div>
+                        <span>{metric.label}</span>
+                        <strong>
+                          {metric.value}/{metric.total}
+                        </strong>
+                      </div>
+                      <div className="bar-chart__track">
+                        <span style={{ width: `${(metric.value / metric.total) * 100}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: 0.25 }}
+                className="metric-card"
+              >
+                <h3>Technology Mix</h3>
+                <div className="donut-wrap">
+                  <div
+                    className="donut"
+                    style={{
+                      background: `conic-gradient(${automationHealth.technologies
+                        .reduce(
+                          (segments, item) => {
+                            const previous = segments.offset;
+                            const next = previous + (item.count / totalTech) * 100;
+                            segments.parts.push(`${item.color} ${previous}% ${next}%`);
+                            segments.offset = next;
+                            return segments;
+                          },
+                          { offset: 0, parts: [] as string[] }
+                        )
+                        .parts.join(", ")})`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div className="donut-legend">
+                    {automationHealth.technologies.map((item) => (
+                      <span key={item.label}>
+                        <i style={{ backgroundColor: item.color }} />
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="max-w-4xl">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl font-light text-black mb-16 tracking-tight text-left"
-            >
-              {siteContent.projects.title}
-            </motion.h2>
-          </div>
+      <section id="projects" className="section-band section-band--white">
+        <div className="section-inner">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+            className="section-heading section-heading--split"
+          >
+            <div>
+              <p className="section-kicker">Framework Portfolio</p>
+              <h2>{siteContent.projects.title}</h2>
+            </div>
+            <p>
+              Practical automation frameworks covering browser UI, API, BDD, Postman/Newman
+              ingestion, Selenium, and AI-assisted Playwright MCP workflows.
+            </p>
+          </motion.div>
+
           <div className="projects-grid">
             {siteContent.projects.items.map((project, index) => (
               <motion.article
                 key={project.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: "easeOut"
-                }}
-                whileHover={{ scale: 1.02 }}
-                className="project-tile"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.28) }}
+                className="project-card"
               >
-                <div className="project-media">
-                  {project.image ? (
+                <div className="project-card__media">
+                  {project.image && (
                     <Image
                       src={project.image}
-                      alt={project.name}
+                      alt=""
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="project-media__image"
-                      priority={index < 2}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="project-card__image"
                     />
-                  ) : (
-                    <div className="project-media__placeholder">
-                      {project.technologies[0] === "JavaScript"
-                        ? "🟨"
-                        : project.technologies[0] === "TypeScript"
-                        ? "🔷"
-                        : project.technologies[0] === "Python"
-                        ? "🐍"
-                        : project.technologies[0] === "Java"
-                        ? "☕"
-                        : "📦"}
-                    </div>
                   )}
+                  <span>{project.category}</span>
                 </div>
-                <div className="project-overlay" />
-                <div className="project-content">
-                  <p className="project-meta">
-                    {project.technologies.slice(0, 3).join(" • ")}
-                  </p>
-                  <h3 className="project-title">{project.name}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-actions">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-button project-button--primary"
-                    >
-                      View Code
-                    </a>
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-button project-button--secondary"
-                      >
-                        Live Demo
-                      </a>
-                    )}
+                <div className="project-card__body">
+                  <div className="project-card__topline">
+                    <span className="status-pill status-pill--compact">
+                      <span aria-hidden="true" />
+                      {project.ciStatus}
+                    </span>
+                    <span>{project.schedule}</span>
                   </div>
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
+                  <div className="tech-list">
+                    {project.technologies.slice(0, 5).map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
+                  </div>
+                  <a
+                    className="project-link"
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View repository
+                  </a>
                 </div>
               </motion.article>
             ))}
@@ -200,91 +295,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section id="certifications" className="bg-white py-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      <section id="certifications" className="section-band section-band--muted">
+        <div className="section-inner">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="certifications-card"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+            className="certifications-strip"
           >
-            <div className="certifications-card__media">
+            <div className="certifications-strip__media">
               <Image
                 src="/images/certifications.png"
                 alt="ISTQB CTFL 4.0 and iSQI Certified Agile Essentials badges"
                 fill
-                sizes="(max-width: 768px) 100vw, 520px"
-                className="certifications-card__image"
+                sizes="(max-width: 768px) 100vw, 460px"
+                className="certifications-strip__image"
               />
             </div>
-            <div className="certifications-card__content">
-              <p className="certifications-card__eyebrow">Certifications</p>
-              <h2 className="certifications-card__heading">
-                Validated expertise in QA fundamentals and agile delivery.
-              </h2>
-              <p className="certifications-card__description">
-                ISTQB® Certified Tester Foundation Level (CTFL 4.0) and iSQI® Certified Agile
-                Essentials.
+            <div>
+              <p className="section-kicker">Certifications</p>
+              <h2>Validated QA foundations paired with modern automation delivery.</h2>
+              <p>
+                ISTQB Certified Tester Foundation Level 4.0 and iSQI Certified Agile Essentials,
+                applied through CI-backed UI, API, BDD, and integration frameworks.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="relative isolate overflow-hidden bg-gray-100 py-32"
-      >
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-left text-sm font-semibold tracking-[0.42em] uppercase text-gray-500"
-          >
-            {siteContent.contact.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-6 max-w-2xl text-left text-xl md:text-[1.45rem] leading-relaxed text-gray-900"
-          >
-            {siteContent.contact.description}
-          </motion.p>
+      <section id="contact" className="contact-section">
+        <div className="section-inner contact-section__inner">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-12 flex flex-wrap items-center gap-4"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
           >
-            <motion.a
-              href={`mailto:${siteContent.contact.email.address}`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="contact-pill"
-            >
-              <span>{siteContent.contact.email.text}</span>
-            </motion.a>
-            <motion.a
-              href={siteContent.contact.linkedin.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="contact-pill contact-pill--secondary"
-            >
-              <span>{siteContent.contact.linkedin.text}</span>
-            </motion.a>
+            <p className="section-kicker">{siteContent.contact.title}</p>
+            <h2>{siteContent.contact.description}</h2>
+            <div className="contact-actions">
+              <a className="button button--light" href={`mailto:${siteContent.contact.email.address}`}>
+                {siteContent.contact.email.text}
+              </a>
+              <a
+                className="button button--ghost"
+                href={siteContent.contact.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {siteContent.contact.linkedin.text}
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

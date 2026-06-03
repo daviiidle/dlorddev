@@ -5,6 +5,30 @@ export interface Project {
   githubUrl: string;
   demoUrl?: string;
   image?: string;
+  category?: string;
+  ciStatus?: "Passing" | "Manual" | "N/A";
+  schedule?: string;
+}
+
+export interface FrameworkHealth {
+  name: string;
+  category: string;
+  stack: string;
+  status: "Passing";
+  schedule: string;
+  latestRun: string;
+}
+
+export interface CapabilityMetric {
+  label: string;
+  value: number;
+  total: number;
+}
+
+export interface TechnologyMetric {
+  label: string;
+  count: number;
+  color: string;
 }
 
 export interface SiteContent {
@@ -36,6 +60,19 @@ export interface SiteContent {
   projects: {
     title: string;
     items: Project[];
+  };
+  automationHealth: {
+    title: string;
+    summary: string;
+    auditedAt: string;
+    stats: {
+      label: string;
+      value: string;
+      detail: string;
+    }[];
+    frameworks: FrameworkHealth[];
+    capabilities: CapabilityMetric[];
+    technologies: TechnologyMetric[];
   };
   contact: {
     title: string;
@@ -86,6 +123,9 @@ export const siteContent: SiteContent = {
         technologies: ["JavaScript", "Cypress", "POM", "Faker.js", "Mochawesome", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Cypress-Automation-Framework.",
         image: "/images/selenium.webp",
+        category: "UI Automation",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "dlorddev",
@@ -93,6 +133,9 @@ export const siteContent: SiteContent = {
         technologies: ["TypeScript", "Next.js", "React", "TailwindCSS", "Vercel"],
         githubUrl: "https://github.com/daviiidle/dlorddev",
         image: "/images/dlorddev.webp",
+        category: "Portfolio",
+        ciStatus: "Manual",
+        schedule: "On change",
       },
       {
         name: "Playwright-TypeScript",
@@ -100,6 +143,9 @@ export const siteContent: SiteContent = {
         technologies: ["TypeScript", "Playwright", "E2E Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-TypeScript",
         image: "/images/playwright.webp",
+        category: "UI Automation",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "Python-API",
@@ -107,6 +153,9 @@ export const siteContent: SiteContent = {
         technologies: ["Python", "API Testing", "Automation", "Pytest"],
         githubUrl: "https://github.com/daviiidle/Python-API",
         image: "/images/python-api.webp",
+        category: "API Automation",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "ITAF-DotNet-CSharp",
@@ -114,6 +163,9 @@ export const siteContent: SiteContent = {
         technologies: ["C#", ".NET", "Reqnroll", "Gherkin", "NUnit", "Playwright", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/ITAF-DotNet-CSharp",
         image: "/images/cypress.webp",
+        category: "BDD Framework",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "Postman-Decoupling-Framework",
@@ -121,6 +173,9 @@ export const siteContent: SiteContent = {
         technologies: ["C#", ".NET", "Postman", "Newman", "Gherkin", "WireMock", "CI/CD"],
         githubUrl: "https://github.com/daviiidle/Postman-Decoupling-Framework",
         image: "/images/wiremock.webp",
+        category: "Integration Framework",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "Postman-Newman-Framework",
@@ -128,6 +183,9 @@ export const siteContent: SiteContent = {
         technologies: ["Postman", "Newman", "Node.js", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Postman-Newman-Framework",
         image: "/images/python-api.webp",
+        category: "API Source Framework",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "Selenium-Automation-Framework",
@@ -135,6 +193,9 @@ export const siteContent: SiteContent = {
         technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
         image: "/images/selenium.webp",
+        category: "UI Automation",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
       {
         name: "Playwright-MCP-AI-Framework",
@@ -142,7 +203,56 @@ export const siteContent: SiteContent = {
         technologies: ["TypeScript", "Playwright", "MCP", "AI Automation", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-MCP-AI-Framework",
         image: "/images/playwright.webp",
+        category: "AI Automation",
+        ciStatus: "Passing",
+        schedule: "Daily",
       },
+    ],
+  },
+  automationHealth: {
+    title: "Automation Health",
+    summary: "A snapshot of maintained QA frameworks with scheduled GitHub Actions, deterministic checks, and visible evidence of delivery discipline.",
+    auditedAt: "Audited June 3, 2026",
+    stats: [
+      {
+        label: "Framework repos",
+        value: "8",
+        detail: "scheduled and maintained",
+      },
+      {
+        label: "Latest CI pass rate",
+        value: "100%",
+        detail: "latest audited framework runs",
+      },
+      {
+        label: "Automation types",
+        value: "5",
+        detail: "UI, API, BDD, integration, AI",
+      },
+    ],
+    frameworks: [
+      { name: "Cypress", category: "UI", stack: "JavaScript", status: "Passing", schedule: "0 2 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Playwright TypeScript", category: "UI", stack: "TypeScript", status: "Passing", schedule: "0 9 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Python API", category: "API", stack: "Python", status: "Passing", schedule: "0 23 * * *", latestRun: "Latest scheduled run green" },
+      { name: "ITAF .NET C#", category: "BDD", stack: "C# / .NET", status: "Passing", schedule: "0 20 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Postman Decoupling", category: "Integration", stack: "C# / Postman", status: "Passing", schedule: "0 20 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Postman Newman", category: "API", stack: "Node.js / Newman", status: "Passing", schedule: "0 19 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Selenium", category: "UI", stack: "Java / Selenium", status: "Passing", schedule: "0 20 * * *", latestRun: "Latest scheduled run green" },
+      { name: "Playwright MCP AI", category: "AI", stack: "TypeScript / MCP", status: "Passing", schedule: "0 21 * * *", latestRun: "Latest push run green" },
+    ],
+    capabilities: [
+      { label: "UI automation", value: 4, total: 8 },
+      { label: "API automation", value: 4, total: 8 },
+      { label: "BDD / Gherkin", value: 2, total: 8 },
+      { label: "AI-assisted tooling", value: 1, total: 8 },
+      { label: "Scheduled CI", value: 8, total: 8 },
+    ],
+    technologies: [
+      { label: "TypeScript / JavaScript", count: 3, color: "#2563eb" },
+      { label: "C# / .NET", count: 2, color: "#7c3aed" },
+      { label: "Python", count: 1, color: "#0f766e" },
+      { label: "Java", count: 1, color: "#dc2626" },
+      { label: "Postman / Newman", count: 1, color: "#ea580c" },
     ],
   },
   contact: {
