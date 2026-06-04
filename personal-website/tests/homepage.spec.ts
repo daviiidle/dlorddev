@@ -31,6 +31,17 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('heading', { name: 'Playwright-MCP-AI-Framework' })).toBeVisible();
   });
 
+  test('shows the homelab systems showcase', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.getByText('Homelab Systems')).toBeVisible();
+    await page.getByText('Open the server cupboard').click();
+    await expect(page.getByRole('heading', { name: 'Home Dashboard Next' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Granny Flat Billing' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Main House Energy' })).toBeVisible();
+    await expect(page.getByText('Private repos for home-specific implementation details')).toBeVisible();
+  });
+
   test('has working project navigation', async ({ page }) => {
     await page.goto('/');
 

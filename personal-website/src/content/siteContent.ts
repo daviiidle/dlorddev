@@ -31,6 +31,15 @@ export interface TechnologyMetric {
   color: string;
 }
 
+export interface HomelabService {
+  name: string;
+  category: string;
+  stack: string[];
+  description: string;
+  visibility: "Private repo" | "Public showcase";
+  image?: string;
+}
+
 export interface SiteContent {
   metadata: {
     title: string;
@@ -73,6 +82,14 @@ export interface SiteContent {
     frameworks: FrameworkHealth[];
     capabilities: CapabilityMetric[];
     technologies: TechnologyMetric[];
+  };
+  homelab: {
+    title: string;
+    kicker: string;
+    teaser: string;
+    summary: string;
+    principles: string[];
+    services: HomelabService[];
   };
   contact: {
     title: string;
@@ -122,7 +139,7 @@ export const siteContent: SiteContent = {
         description: "JavaScript-based E2E testing framework utilizing Cypress, Page Object Model, Faker.js for data generation, Mochawesome reporting, and GitHub Actions CI/CD integration.",
         technologies: ["JavaScript", "Cypress", "POM", "Faker.js", "Mochawesome", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Cypress-Automation-Framework.",
-        image: "/images/selenium.webp",
+        image: "/images/tile-cypress-automation-framework.png",
         category: "UI Automation",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -132,7 +149,7 @@ export const siteContent: SiteContent = {
         description: "Personal portfolio website showcasing automation frameworks and projects",
         technologies: ["TypeScript", "Next.js", "React", "TailwindCSS", "Vercel"],
         githubUrl: "https://github.com/daviiidle/dlorddev",
-        image: "/images/dlorddev.webp",
+        image: "/images/tile-dlorddev.png",
         category: "Portfolio",
         ciStatus: "Manual",
         schedule: "On change",
@@ -142,7 +159,7 @@ export const siteContent: SiteContent = {
         description: "TypeScript-based Playwright automation framework for reliable cross-browser end-to-end testing.",
         technologies: ["TypeScript", "Playwright", "E2E Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-TypeScript",
-        image: "/images/playwright.webp",
+        image: "/images/tile-playwright-typescript.png",
         category: "UI Automation",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -152,7 +169,7 @@ export const siteContent: SiteContent = {
         description: "Python API testing framework for structured request validation, test data generation, and automated quality checks.",
         technologies: ["Python", "API Testing", "Automation", "Pytest"],
         githubUrl: "https://github.com/daviiidle/Python-API",
-        image: "/images/python-api.webp",
+        image: "/images/tile-python-api.png",
         category: "API Automation",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -162,7 +179,7 @@ export const siteContent: SiteContent = {
         description: "Integrated Test Automation Framework built with .NET, C#, Reqnroll BDD/Gherkin, NUnit, Playwright UI automation, API testing, logging, reporting, and CI/CD.",
         technologies: ["C#", ".NET", "Reqnroll", "Gherkin", "NUnit", "Playwright", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/ITAF-DotNet-CSharp",
-        image: "/images/cypress.webp",
+        image: "/images/tile-itaf-dotnet-csharp.png",
         category: "BDD Framework",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -172,7 +189,7 @@ export const siteContent: SiteContent = {
         description: "C# ingestion framework that consumes existing Postman/Newman repositories and generates Gherkin features, test data, and WireMock stub mappings without forcing teams to change tools.",
         technologies: ["C#", ".NET", "Postman", "Newman", "Gherkin", "WireMock", "CI/CD"],
         githubUrl: "https://github.com/daviiidle/Postman-Decoupling-Framework",
-        image: "/images/wiremock.webp",
+        image: "/images/tile-postman-decoupling-framework.png",
         category: "Integration Framework",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -182,7 +199,7 @@ export const siteContent: SiteContent = {
         description: "Placement-domain Postman/Newman source framework containing collections, environments, iteration data, and scheduled CI assets consumed by the decoupling framework.",
         technologies: ["Postman", "Newman", "Node.js", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Postman-Newman-Framework",
-        image: "/images/python-api.webp",
+        image: "/images/tile-postman-newman-framework.png",
         category: "API Source Framework",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -192,7 +209,7 @@ export const siteContent: SiteContent = {
         description: "Enterprise-grade Selenium Java automation framework for DemoWebShop with Page Object Model, TestNG suites, reporting, driver management, test data utilities, and CI workflows.",
         technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
-        image: "/images/selenium.webp",
+        image: "/images/tile-selenium-automation-framework.png",
         category: "UI Automation",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -202,7 +219,7 @@ export const siteContent: SiteContent = {
         description: "AI-assisted browser automation framework using Microsoft's official Playwright MCP server for exploratory authoring, with deterministic Playwright TypeScript tests and scheduled CI.",
         technologies: ["TypeScript", "Playwright", "MCP", "AI Automation", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-MCP-AI-Framework",
-        image: "/images/playwright.webp",
+        image: "/images/tile-playwright-mcp-ai-framework.png",
         category: "AI Automation",
         ciStatus: "Passing",
         schedule: "Daily",
@@ -253,6 +270,72 @@ export const siteContent: SiteContent = {
       { label: "Python", count: 1, color: "#0f766e" },
       { label: "Java", count: 1, color: "#dc2626" },
       { label: "Postman / Newman", count: 1, color: "#ea580c" },
+    ],
+  },
+  homelab: {
+    title: "Homelab Systems",
+    kicker: "Private infrastructure, public case studies",
+    teaser: "Open the server cupboard",
+    summary:
+      "A sanitized look at the self-hosted systems I run for energy tracking, household dashboards, media services, automation, monitoring, and recovery planning. The production repositories and live endpoints stay private; the portfolio focuses on architecture, delivery practice, and operational thinking.",
+    principles: [
+      "Private repos for home-specific implementation details",
+      "Sanitized screenshots and mock data for public write-ups",
+      "Docker Compose, systemd, and backup-first restore planning",
+    ],
+    services: [
+      {
+        name: "Home Dashboard Next",
+        category: "Operations dashboard",
+        stack: ["Next.js", "FastAPI", "Docker", "Tailscale"],
+        description:
+          "Single-pane dashboard for private service health, project shortcuts, Docker-aware status, and household system summaries.",
+        visibility: "Private repo",
+        image: "/images/homelab/home-dashboard-next.png",
+      },
+      {
+        name: "Granny Flat Billing",
+        category: "Energy billing",
+        stack: ["Python", "React", "SQLite", "systemd"],
+        description:
+          "Tracks tenant-facing electricity usage and billing state with local persistence and a focused dashboard workflow.",
+        visibility: "Private repo",
+        image: "/images/homelab/granny-flat-billing.png",
+      },
+      {
+        name: "Main House Energy",
+        category: "Solar and usage",
+        stack: ["Python", "React", "SQLite", "SolarEdge"],
+        description:
+          "Models household solar generation, grid import/export, and daily energy flow for practical household decision-making.",
+        visibility: "Private repo",
+        image: "/images/homelab/main-house-energy.png",
+      },
+      {
+        name: "Frigate + Home Assistant",
+        category: "Automation and video",
+        stack: ["Docker Compose", "Frigate", "Home Assistant", "MQTT"],
+        description:
+          "Local-first camera, automation, and event workflow stack with pinned containers and recovery-oriented configuration.",
+        visibility: "Public showcase",
+        image: "/images/homelab/frigate-wall.png",
+      },
+      {
+        name: "Immich",
+        category: "Photo library",
+        stack: ["Docker", "PostgreSQL", "External storage"],
+        description:
+          "Self-hosted photo library with scheduled database backups and external media storage separated from app config.",
+        visibility: "Public showcase",
+      },
+      {
+        name: "Portainer + Filebrowser",
+        category: "Administration",
+        stack: ["Docker", "Volumes", "Bind mounts"],
+        description:
+          "Local administration tools for container visibility and managed access to curated server folders.",
+        visibility: "Public showcase",
+      },
     ],
   },
   contact: {

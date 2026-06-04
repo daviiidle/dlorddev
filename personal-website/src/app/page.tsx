@@ -15,7 +15,7 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { automationHealth } = siteContent;
+  const { automationHealth, homelab } = siteContent;
   const totalTech = automationHealth.technologies.reduce((sum, item) => sum + item.count, 0);
 
   return (
@@ -32,6 +32,7 @@ export default function Home() {
         <div className="site-nav__links">
           <a href="#health">{automationHealth.title}</a>
           <a href="#projects">{siteContent.navigation.links.projects}</a>
+          <a href="#homelab">Homelab</a>
           <a href="#contact">{siteContent.navigation.links.contact}</a>
         </div>
       </motion.nav>
@@ -284,6 +285,89 @@ export default function Home() {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="homelab" className="section-band section-band--white">
+        <div className="section-inner">
+          <motion.details
+            className="homelab-disclosure"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+          >
+            <summary className="homelab-summary">
+              <span className="section-kicker">{homelab.kicker}</span>
+              <span className="homelab-summary__main">
+                <span>
+                  <strong>{homelab.title}</strong>
+                  <em>{homelab.teaser}</em>
+                </span>
+                <span className="homelab-summary__button">
+                  <span className="homelab-summary__expand">Expand</span>
+                  <span className="homelab-summary__collapse">Collapse</span>
+                </span>
+              </span>
+            </summary>
+
+            <div className="homelab-expanded">
+              <div className="section-heading section-heading--split homelab-heading">
+                <div>
+                  <p className="section-kicker">{homelab.kicker}</p>
+                  <h2>{homelab.title}</h2>
+                </div>
+                <p>{homelab.summary}</p>
+              </div>
+
+              <div className="homelab-layout">
+                <aside className="homelab-principles">
+                  <h3>Showcase Boundaries</h3>
+                  {homelab.principles.map((principle) => (
+                    <p key={principle}>{principle}</p>
+                  ))}
+                </aside>
+
+                <div className="homelab-grid">
+                  {homelab.services.map((service) => (
+                    <article key={service.name} className="homelab-card">
+                      {service.image && (
+                        <a
+                          className="homelab-card__media"
+                          href={service.image}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open full ${service.name} dashboard screenshot`}
+                        >
+                          <Image
+                            src={service.image}
+                            alt=""
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="homelab-card__image"
+                          />
+                        </a>
+                      )}
+                      <div className="homelab-card__body">
+                        <div className="homelab-card__topline">
+                          <span>{service.category}</span>
+                          <span>{service.visibility}</span>
+                        </div>
+                        <h3>{service.name}</h3>
+                        <p>{service.description}</p>
+                        <div className="tech-list">
+                          {service.stack.map((technology) => (
+                            <span key={technology}>{technology}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.details>
         </div>
       </section>
 
