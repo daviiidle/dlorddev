@@ -4,20 +4,31 @@ test.describe('Homepage', () => {
   test('displays the full-bleed hero and navigation', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'Quality Assurance & Automation Engineer' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Automation-focused Quality Engineer.' })).toBeVisible();
     await expect(page.getByText('Hybrid QA Engineer')).toBeVisible();
 
-    await expect(page.getByRole('link', { name: 'Automation Health' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Story' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Automation Evidence' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Projects' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Contact' })).toBeVisible();
+  });
+
+  test('lets recruiters expand the professional story', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.getByText('A practical path from functional QA to automation ownership.')).toBeVisible();
+    await page.getByText('Read the full career story').click();
+    await expect(page.getByText('I entered the software testing industry in 2022')).toBeVisible();
+    await expect(page.getByText('186')).toBeVisible();
+    await expect(page.getByText('Super Nova Award')).toBeVisible();
   });
 
   test('shows CI health evidence and metrics', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'Automation Health' })).toBeVisible();
-    await expect(page.getByLabel('Automation metrics').getByText('100%')).toBeVisible();
-    await expect(page.getByText('8 of 8 framework pipelines passing')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
+    await expect(page.getByLabel('Automation metrics').getByText('8/8')).toBeVisible();
+    await expect(page.getByText('framework pipelines green in the latest checked runs')).toBeVisible();
     await expect(page.getByText('Playwright MCP AI')).toBeVisible();
     await expect(page.getByText('0 21 * * *')).toBeVisible();
   });
@@ -61,8 +72,8 @@ test.describe('Homepage', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'Quality Assurance & Automation Engineer' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Automation Health' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Automation-focused Quality Engineer.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
   });
 });

@@ -66,6 +66,23 @@ export interface SiteContent {
       email: string;
     };
   };
+  professionalStory: {
+    kicker: string;
+    title: string;
+    summary: string;
+    cta: string;
+    recruiterSnapshot: {
+      label: string;
+      value: string;
+      detail: string;
+    }[];
+    highlights: {
+      value: string;
+      label: string;
+      detail: string;
+    }[];
+    paragraphs: string[];
+  };
   projects: {
     title: string;
     items: Project[];
@@ -119,8 +136,8 @@ export const siteContent: SiteContent = {
     },
   },
   hero: {
-    title: "Quality Assurance & Automation Engineer",
-    subtitle: "QA and Automation Engineer with expertise in functional and automation testing across banking, finance, and retail. Building scalable test frameworks with Python, Behave, Cucumber, and modern CI/CD pipelines. Passionate about combining structured test design with AI-assisted tooling to deliver reliable, high-performing platforms.",
+    title: "Automation-focused Quality Engineer.",
+    subtitle: "Melbourne-based QA and Automation Engineer with hands-on experience across banking, Salesforce, API integration, and enterprise workflow testing. I build practical automation frameworks, validate complex system behaviour, and use AI-assisted engineering to move faster without losing testing discipline.",
     cta: {
       primary: "View My Work",
       secondary: "GitHub",
@@ -130,6 +147,65 @@ export const siteContent: SiteContent = {
       linkedin: "https://linkedin.com/in/yourprofile",
       email: "your.email@example.com",
     },
+  },
+  professionalStory: {
+    kicker: "Professional Story",
+    title: "A practical path from functional QA to automation ownership.",
+    summary:
+      "The short version: I started in functional testing, moved into enterprise banking automation, and now combine QA fundamentals with framework development, API coverage, Playwright, and AI-assisted quality engineering.",
+    cta: "Read the full career story",
+    recruiterSnapshot: [
+      {
+        label: "Role fit",
+        value: "QA / Automation",
+        detail: "Strong fit for Quality Engineer, Automation Engineer, and SDET-adjacent roles.",
+      },
+      {
+        label: "Domains",
+        value: "Banking + Salesforce",
+        detail: "Experience across onboarding, deposits, transactions, chat migration, and integrations.",
+      },
+      {
+        label: "Core stack",
+        value: "Python / Playwright / API",
+        detail: "Comfortable across PyTest, Behave, TypeScript, CI/CD, Postman/Newman, and BDD.",
+      },
+      {
+        label: "Current edge",
+        value: "AI-assisted QE",
+        detail: "Using local models, agents, and automation wrappers to accelerate test design and delivery.",
+      },
+    ],
+    highlights: [
+      {
+        value: "2022",
+        label: "QA foundations",
+        detail: "Functional testing, requirements validation, defect management, and process coverage.",
+      },
+      {
+        value: "186",
+        label: "System scenarios automated",
+        detail: "Contributed roughly 37% of automated system test coverage at Judo Bank.",
+      },
+      {
+        value: "200+",
+        label: "Salesforce chat cases",
+        detail: "Designed and executed migration coverage across journeys, routing, integrations, and data validation.",
+      },
+    ],
+    paragraphs: [
+      "I entered the software testing industry in 2022 through a QA bootcamp and began my career in functional testing. My early experience focused on test execution, defect management, requirements validation, and end-to-end business process testing across research and enterprise applications.",
+      "As I moved into banking and financial services projects, I became increasingly involved in API testing, integration testing, and complex enterprise workflows. Working across systems such as Salesforce, Thought Machine, T24, Ops UI, Oracle ERP, and downstream integrations exposed me to large-scale enterprise environments where quality depended on validating data, business processes, and system interactions across multiple platforms.",
+      "A defining point in my career was transitioning into automation. I did not come from a traditional software engineering background and initially relied heavily on AI-assisted development tools to accelerate my learning. Rather than focusing on memorising programming syntax, I focused on understanding frameworks, identifying patterns, solving testing problems, and delivering outcomes. Over time, I became increasingly effective at working within automation frameworks, understanding reusable components, API abstractions, CI/CD pipelines, test isolation strategies, and maintainable automation practices.",
+      "Within approximately six months of moving into automation, I became a significant contributor to the automation team at Judo Bank. Working as part of a team of eight automation engineers, I automated approximately 186 system test scenarios, contributing to roughly 37% of the overall automated system test coverage. My work focused on customer onboarding, term deposits, transactions, account life cycles, integrations, and end-to-end banking workflows using Python, Behave, PyTest, API automation, and GitHub Actions.",
+      "During this period I actively embraced AI-assisted engineering practices and became one of the strongest advocates for AI adoption within the team. I mentored offshore automation testers and shared AI-assisted workflows that helped accelerate delivery, problem-solving, and framework development. My contributions were recognised through a Super Nova Award, one of the highest recognition awards available within the organisation.",
+      "More recently, I worked as the sole tester on a Salesforce chat migration project, helping migrate from a legacy chat platform to Salesforce Embedded Messaging. In this role I designed and executed more than 200 test cases covering customer journeys, case creation, routing logic, integrations, Salesforce data validation, and business process workflows. During project downtime, I independently built Playwright and TypeScript automation to validate chat workflows and improve my capability in modern web automation technologies.",
+      "One of the most important lessons I learned during this period was adaptability. I was placed into automation projects involving technologies and business domains I had never worked with before. In one project, I joined an automation team responsible for validating output engine processes, generated files, headers, record counts, and downstream outputs. Despite having no prior experience in that area, I was able to understand the framework, contribute working automation, have my pull request merged within days, and rapidly increase my delivery velocity afterwards.",
+      "My current work extends beyond traditional testing and automation into AI-assisted quality engineering. I am currently involved in an AI proof-of-concept initiative focused on accelerating application understanding, test data generation, and test case creation where requirements are incomplete, outdated, or unavailable. Due to data sovereignty requirements, the initiative uses locally hosted models and tooling rather than public cloud AI services. This includes experimentation with Gemma-based models, OpenCode workflows, agent-based approaches, and AI-assisted techniques for understanding complex applications and generating testing assets.",
+      "Alongside this initiative, I developed an ITAF wrapper framework designed to reduce friction when adopting automation. Rather than forcing users to learn an entirely new framework, the solution allows teams to continue using familiar tools and workflows while automatically generating feature files and test data through reusable submodules and framework abstractions. The objective was not simply automation, but improving adoption by adapting the framework to existing business processes rather than forcing users to adapt to the framework.",
+      "Outside of work, I continuously build personal projects focused on automation, AI, and infrastructure. These include Playwright frameworks, AI tooling, prompt orchestration systems, CLI applications, dashboards, and a self-hosted Ubuntu homelab running Docker-based services. Through these projects I continue to explore automation, observability, AI-assisted engineering, infrastructure management, and modern software delivery practices.",
+      "Today, I describe myself as a Quality Engineer and Automation Engineer who combines strong testing fundamentals with practical automation experience and extensive use of AI-assisted engineering techniques. My strength is not memorising syntax or writing every line of code manually. My strength is understanding systems, learning unfamiliar domains quickly, recognising patterns, building reusable solutions, and using modern tools to deliver quality outcomes efficiently.",
+    ],
   },
   projects: {
     title: "Featured Projects",
@@ -227,8 +303,8 @@ export const siteContent: SiteContent = {
     ],
   },
   automationHealth: {
-    title: "Automation Health",
-    summary: "A snapshot of maintained QA frameworks with scheduled GitHub Actions, deterministic checks, and visible evidence of delivery discipline.",
+    title: "Automation Evidence",
+    summary: "A snapshot of maintained QA frameworks with scheduled GitHub Actions, deterministic checks, and visible evidence that the repos are actively exercised.",
     auditedAt: "Audited June 3, 2026",
     stats: [
       {
@@ -237,9 +313,9 @@ export const siteContent: SiteContent = {
         detail: "scheduled and maintained",
       },
       {
-        label: "Latest CI pass rate",
-        value: "100%",
-        detail: "latest audited framework runs",
+        label: "Green audited runs",
+        value: "8/8",
+        detail: "latest checked framework pipelines",
       },
       {
         label: "Automation types",

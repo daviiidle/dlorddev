@@ -15,7 +15,7 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { automationHealth, homelab } = siteContent;
+  const { automationHealth, homelab, professionalStory } = siteContent;
   const totalTech = automationHealth.technologies.reduce((sum, item) => sum + item.count, 0);
 
   return (
@@ -30,6 +30,7 @@ export default function Home() {
           {siteContent.navigation.brand}
         </a>
         <div className="site-nav__links">
+          <a href="#story">Story</a>
           <a href="#health">{automationHealth.title}</a>
           <a href="#projects">{siteContent.navigation.links.projects}</a>
           <a href="#homelab">Homelab</a>
@@ -80,6 +81,61 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      <section className="recruiter-strip" aria-label="Recruiter snapshot">
+        <div className="section-inner recruiter-strip__inner">
+          {professionalStory.recruiterSnapshot.map((item) => (
+            <article key={item.label} className="recruiter-fact">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="story" className="section-band section-band--white">
+        <div className="section-inner">
+          <motion.details
+            className="story-disclosure"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+          >
+            <summary className="story-summary">
+              <span className="story-summary__copy">
+                <span className="section-kicker">{professionalStory.kicker}</span>
+                <strong>{professionalStory.title}</strong>
+                <em>{professionalStory.summary}</em>
+              </span>
+              <span className="story-summary__button">
+                <span className="story-summary__expand">{professionalStory.cta}</span>
+                <span className="story-summary__collapse">Collapse story</span>
+              </span>
+            </summary>
+
+            <div className="story-expanded">
+              <div className="story-highlights" aria-label="Career story highlights">
+                {professionalStory.highlights.map((highlight) => (
+                  <article key={highlight.label}>
+                    <strong>{highlight.value}</strong>
+                    <span>{highlight.label}</span>
+                    <p>{highlight.detail}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="story-body">
+                {professionalStory.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </motion.details>
         </div>
       </section>
 
@@ -142,8 +198,8 @@ export default function Home() {
                 className="metric-card metric-card--dark"
               >
                 <p className="metric-card__label">Latest audited CI</p>
-                <strong>100%</strong>
-                <span>8 of 8 framework pipelines passing</span>
+                <strong>8/8</strong>
+                <span>framework pipelines green in the latest checked runs</span>
               </motion.div>
 
               <motion.div
