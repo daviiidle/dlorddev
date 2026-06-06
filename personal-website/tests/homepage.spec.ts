@@ -19,7 +19,7 @@ test.describe('Homepage', () => {
     await expect(page.getByText('A practical path from functional QA to automation ownership.')).toBeVisible();
     await page.getByText('Read the full career story').click();
     await expect(page.getByText('I entered the software testing industry in 2022')).toBeVisible();
-    await expect(page.getByText('186')).toBeVisible();
+    await expect(page.getByText('186', { exact: true })).toBeVisible();
     await expect(page.getByText('Super Nova Award')).toBeVisible();
   });
 
@@ -27,7 +27,7 @@ test.describe('Homepage', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
-    await expect(page.getByLabel('Automation metrics').getByText('8/8')).toBeVisible();
+    await expect(page.locator('.metric-card--dark strong', { hasText: '8/8' })).toBeVisible();
     await expect(page.getByText('framework pipelines green in the latest checked runs')).toBeVisible();
     await expect(page.getByText('Playwright MCP AI')).toBeVisible();
     await expect(page.getByText('0 21 * * *')).toBeVisible();
@@ -37,6 +37,10 @@ test.describe('Homepage', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
+    await expect(page.getByText('These are personal projects, portfolio frameworks, and lab systems')).toBeVisible();
+    await expect(page.getByText('They are not presented as client-delivered products.')).toBeVisible();
+    await expect(page.getByText('For recruiters and hiring teams')).toBeVisible();
+    await expect(page.getByText('Self-directed portfolio').first()).toBeVisible();
     await expect(page.getByRole('heading', { name: 'ITAF-DotNet-CSharp' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Postman-Decoupling-Framework' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Playwright-MCP-AI-Framework' })).toBeVisible();
@@ -45,7 +49,7 @@ test.describe('Homepage', () => {
   test('shows the homelab systems showcase', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByText('Homelab Systems')).toBeVisible();
+    await expect(page.getByRole('strong').filter({ hasText: 'Homelab Systems' })).toBeVisible();
     await page.getByText('Open the server cupboard').click();
     await expect(page.getByRole('heading', { name: 'Home Dashboard Next' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Granny Flat Billing' })).toBeVisible();

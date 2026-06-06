@@ -867,6 +867,34 @@ a {
   gap: 18px;
 }
 
+.projects-context {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.32fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin: -24px 0 26px;
+  border: 1px solid #d9e2ef;
+  border-left: 5px solid #2563eb;
+  border-radius: 8px;
+  padding: 18px 20px;
+  background: #f8fbff;
+}
+
+.projects-context strong {
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.projects-context p {
+  margin: 0;
+  color: #475569;
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
 .project-card {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -925,11 +953,21 @@ a {
 .project-card__topline {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 800;
+}
+
+.project-context-pill {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 0.72rem;
+  font-weight: 850;
 }
 
 .project-card h3 {
@@ -946,6 +984,35 @@ a {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.62;
+}
+
+.project-evidence {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+  padding: 12px 0;
+}
+
+.project-evidence div {
+  display: grid;
+  gap: 3px;
+}
+
+.project-evidence dt {
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.project-evidence dd {
+  margin: 0;
+  color: #334155;
+  font-size: 0.84rem;
+  line-height: 1.48;
 }
 
 .tech-list {
@@ -1172,6 +1239,12 @@ a {
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .projects-context {
+    grid-template-columns: 1fr;
+    margin-top: -12px;
+    padding: 15px;
   }
 
   .homelab-grid {

@@ -6,6 +6,9 @@ export interface Project {
   demoUrl?: string;
   image?: string;
   category?: string;
+  context: "Self-directed portfolio" | "Personal website" | "Private homelab case study";
+  role: string;
+  evidence: string;
   ciStatus?: "Passing" | "Manual" | "N/A";
   schedule?: string;
 }
@@ -85,6 +88,9 @@ export interface SiteContent {
   };
   projects: {
     title: string;
+    kicker: string;
+    summary: string;
+    note: string;
     items: Project[];
   };
   automationHealth: {
@@ -209,94 +215,126 @@ export const siteContent: SiteContent = {
   },
   projects: {
     title: "Featured Projects",
+    kicker: "Self-directed engineering evidence",
+    summary:
+      "These are personal projects, portfolio frameworks, and lab systems built to demonstrate how I think through quality engineering, automation design, CI, and maintainable delivery. They are not presented as client-delivered products.",
+    note:
+      "For recruiters and hiring teams: read these as evidence of hands-on capability, learning velocity, and engineering judgement alongside my professional QA experience.",
     items: [
       {
         name: "Cypress-Automation-Framework",
-        description: "JavaScript-based E2E testing framework utilizing Cypress, Page Object Model, Faker.js for data generation, Mochawesome reporting, and GitHub Actions CI/CD integration.",
+        description: "Portfolio UI automation framework used to demonstrate Cypress structure, Page Object modelling, generated test data, reporting, and scheduled CI discipline.",
         technologies: ["JavaScript", "Cypress", "POM", "Faker.js", "Mochawesome", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Cypress-Automation-Framework.",
         image: "/images/tile-cypress-automation-framework.png",
         category: "UI Automation",
+        context: "Self-directed portfolio",
+        role: "Designed and maintained as a public QA automation sample.",
+        evidence: "Shows framework structure, reporting, reusable page objects, and daily GitHub Actions.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "dlorddev",
-        description: "Personal portfolio website showcasing automation frameworks and projects",
+        description: "This personal website, built to present automation evidence, career context, and selected project work without implying client ownership.",
         technologies: ["TypeScript", "Next.js", "React", "TailwindCSS", "Vercel"],
         githubUrl: "https://github.com/daviiidle/dlorddev",
         image: "/images/tile-dlorddev.png",
         category: "Portfolio",
+        context: "Personal website",
+        role: "Built and edited end to end, including content model, responsive layout, and tests.",
+        evidence: "Shows frontend delivery, portfolio storytelling, accessibility-aware layout, and deployment workflow.",
         ciStatus: "Manual",
         schedule: "On change",
       },
       {
         name: "Playwright-TypeScript",
-        description: "TypeScript-based Playwright automation framework for reliable cross-browser end-to-end testing.",
+        description: "Self-directed Playwright framework demonstrating cross-browser E2E patterns, deterministic checks, and TypeScript test organisation.",
         technologies: ["TypeScript", "Playwright", "E2E Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-TypeScript",
         image: "/images/tile-playwright-typescript.png",
         category: "UI Automation",
+        context: "Self-directed portfolio",
+        role: "Created as a public practice framework for modern browser automation.",
+        evidence: "Shows Playwright fixtures, test structure, CI execution, and maintainable selectors.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "Python-API",
-        description: "Python API testing framework for structured request validation, test data generation, and automated quality checks.",
+        description: "Portfolio API automation framework focused on request validation, schema checks, generated data, and reusable test execution patterns.",
         technologies: ["Python", "API Testing", "Automation", "Pytest"],
         githubUrl: "https://github.com/daviiidle/Python-API",
         image: "/images/tile-python-api.png",
         category: "API Automation",
+        context: "Self-directed portfolio",
+        role: "Built to demonstrate API test design outside a confidential employer codebase.",
+        evidence: "Shows API abstractions, validation strategy, logging, and repeatable CI runs.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "ITAF-DotNet-CSharp",
-        description: "Integrated Test Automation Framework built with .NET, C#, Reqnroll BDD/Gherkin, NUnit, Playwright UI automation, API testing, logging, reporting, and CI/CD.",
+        description: "Self-directed integrated automation framework exploring .NET, C#, BDD, Playwright, API coverage, logging, reporting, and CI/CD.",
         technologies: ["C#", ".NET", "Reqnroll", "Gherkin", "NUnit", "Playwright", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/ITAF-DotNet-CSharp",
         image: "/images/tile-itaf-dotnet-csharp.png",
         category: "BDD Framework",
+        context: "Self-directed portfolio",
+        role: "Developed as a portfolio-grade framework to show architecture and adoption thinking.",
+        evidence: "Shows BDD layering, UI/API coverage, test hooks, reusable core utilities, and CI.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "Postman-Decoupling-Framework",
-        description: "C# ingestion framework that consumes existing Postman/Newman repositories and generates Gherkin features, test data, and WireMock stub mappings without forcing teams to change tools.",
+        description: "Personal framework concept for turning existing Postman/Newman assets into Gherkin, test data, and WireMock mappings without forcing tool changes.",
         technologies: ["C#", ".NET", "Postman", "Newman", "Gherkin", "WireMock", "CI/CD"],
         githubUrl: "https://github.com/daviiidle/Postman-Decoupling-Framework",
         image: "/images/tile-postman-decoupling-framework.png",
         category: "Integration Framework",
+        context: "Self-directed portfolio",
+        role: "Designed as a technical spike around automation adoption and asset reuse.",
+        evidence: "Shows importer design, generator pipeline, stub mapping, and framework boundary thinking.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "Postman-Newman-Framework",
-        description: "Placement-domain Postman/Newman source framework containing collections, environments, iteration data, and scheduled CI assets consumed by the decoupling framework.",
+        description: "Companion portfolio source project with Postman collections, environments, data files, and scheduled Newman CI for the decoupling framework.",
         technologies: ["Postman", "Newman", "Node.js", "API Testing", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Postman-Newman-Framework",
         image: "/images/tile-postman-newman-framework.png",
         category: "API Source Framework",
+        context: "Self-directed portfolio",
+        role: "Created as controlled source material for framework ingestion and CI evidence.",
+        evidence: "Shows collection structure, environment handling, iteration data, and Newman scheduling.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "Selenium-Automation-Framework",
-        description: "Enterprise-grade Selenium Java automation framework for DemoWebShop with Page Object Model, TestNG suites, reporting, driver management, test data utilities, and CI workflows.",
+        description: "Portfolio Selenium Java framework against DemoWebShop, built to show classic UI automation patterns without relying on employer examples.",
         technologies: ["Java", "Selenium", "TestNG", "Maven", "POM", "ExtentReports", "Allure", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Selenium-Automation-Framework",
         image: "/images/tile-selenium-automation-framework.png",
         category: "UI Automation",
+        context: "Self-directed portfolio",
+        role: "Maintained as a public Java/Selenium automation sample.",
+        evidence: "Shows POM structure, TestNG suites, reporting, driver management, and CI workflows.",
         ciStatus: "Passing",
         schedule: "Daily",
       },
       {
         name: "Playwright-MCP-AI-Framework",
-        description: "AI-assisted browser automation framework using Microsoft's official Playwright MCP server for exploratory authoring, with deterministic Playwright TypeScript tests and scheduled CI.",
+        description: "Personal AI-assisted automation experiment using Playwright MCP for exploratory authoring, with deterministic Playwright TypeScript checks for CI.",
         technologies: ["TypeScript", "Playwright", "MCP", "AI Automation", "GitHub Actions"],
         githubUrl: "https://github.com/daviiidle/Playwright-MCP-AI-Framework",
         image: "/images/tile-playwright-mcp-ai-framework.png",
         category: "AI Automation",
+        context: "Self-directed portfolio",
+        role: "Built to explore where AI assistance helps test authoring while keeping checks deterministic.",
+        evidence: "Shows MCP-assisted workflow, Playwright implementation, and scheduled validation.",
         ciStatus: "Passing",
         schedule: "Daily",
       },

@@ -282,13 +282,24 @@ export default function Home() {
             className="section-heading section-heading--split"
           >
             <div>
-              <p className="section-kicker">Framework Portfolio</p>
+              <p className="section-kicker">{siteContent.projects.kicker}</p>
               <h2>{siteContent.projects.title}</h2>
             </div>
             <p>
-              Practical automation frameworks covering browser UI, API, BDD, Postman/Newman
-              ingestion, Selenium, and AI-assisted Playwright MCP workflows.
+              {siteContent.projects.summary}
             </p>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="projects-context"
+          >
+            <strong>How to read this section</strong>
+            <p>{siteContent.projects.note}</p>
           </motion.div>
 
           <div className="projects-grid">
@@ -316,14 +327,28 @@ export default function Home() {
                 </div>
                 <div className="project-card__body">
                   <div className="project-card__topline">
+                    <span className="project-context-pill">{project.context}</span>
                     <span className="status-pill status-pill--compact">
                       <span aria-hidden="true" />
                       {project.ciStatus}
                     </span>
-                    <span>{project.schedule}</span>
                   </div>
                   <h3>{project.name}</h3>
                   <p>{project.description}</p>
+                  <dl className="project-evidence">
+                    <div>
+                      <dt>My role</dt>
+                      <dd>{project.role}</dd>
+                    </div>
+                    <div>
+                      <dt>Evidence</dt>
+                      <dd>{project.evidence}</dd>
+                    </div>
+                    <div>
+                      <dt>CI rhythm</dt>
+                      <dd>{project.schedule}</dd>
+                    </div>
+                  </dl>
                   <div className="tech-list">
                     {project.technologies.slice(0, 5).map((technology) => (
                       <span key={technology}>{technology}</span>
