@@ -4,8 +4,8 @@ test.describe('Homepage', () => {
   test('displays the full-bleed hero and navigation', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'Automation-focused Quality Engineer.' })).toBeVisible();
-    await expect(page.getByText('Hybrid QA Engineer')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Modern quality engineering, accelerated by AI.' })).toBeVisible();
+    await expect(page.getByText('Quality Engineer / Test Automation Engineer')).toBeVisible();
 
     await expect(page.getByRole('link', { name: 'Story' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Automation Evidence' })).toBeVisible();
@@ -16,9 +16,10 @@ test.describe('Homepage', () => {
   test('lets recruiters expand the professional story', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByText('A practical path from functional QA to automation ownership.')).toBeVisible();
+    await expect(page.getByText('From functional QA to AI-assisted quality engineering.')).toBeVisible();
     await page.getByText('Read the full career story').click();
-    await expect(page.getByText('I entered the software testing industry in 2022')).toBeVisible();
+    await expect(page.getByText('I began my testing career with Planit in 2022')).toBeVisible();
+    await expect(page.getByText('My current AEMO engagement')).toBeVisible();
     await expect(page.getByText('186', { exact: true })).toBeVisible();
     await expect(page.getByText('Super Nova Award')).toBeVisible();
   });
@@ -76,7 +77,7 @@ test.describe('Homepage', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: 'Automation-focused Quality Engineer.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Modern quality engineering, accelerated by AI.' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
   });

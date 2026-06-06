@@ -48,7 +48,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="hero-copy"
           >
-            <p className="section-kicker">Hybrid QA Engineer</p>
+            <p className="section-kicker">Quality Engineer / Test Automation Engineer</p>
             <h1>{siteContent.hero.title}</h1>
             <p>{siteContent.hero.subtitle}</p>
             <div className="hero-actions">
@@ -507,8 +507,8 @@ export default function Home() {
               <p className="section-kicker">{siteContent.contact.title}</p>
               <h2>{siteContent.contact.description}</h2>
               <p>
-                Melbourne-based QA and automation engineer building CI-backed frameworks across
-                Playwright, Cypress, Selenium, API, BDD, Postman/Newman, and AI-assisted tooling.
+                Melbourne-based quality engineer combining enterprise testing, practical automation,
+                rapid system comprehension, and evidence-based AI-assisted engineering.
               </p>
               <div className="contact-actions">
                 <a className="button button--light" href={`mailto:${siteContent.contact.email.address}`}>
