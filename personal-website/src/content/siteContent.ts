@@ -323,6 +323,18 @@ export const siteContent: SiteContent = {
         schedule: "Daily",
       },
       {
+        name: "Appium-Java-Mobile-Framework",
+        description: "Portfolio Android mobile automation framework against a public Sauce Labs demo retail app, built for hands-on Appium learning and interview evidence.",
+        technologies: ["Java", "Appium", "Android", "TestNG", "Maven", "POM", "Allure", "GitHub Actions"],
+        githubUrl: "https://github.com/daviiidle/appium-java-mobile-framework",
+        category: "Mobile Automation",
+        context: "Self-directed portfolio",
+        role: "Built as a local emulator-ready framework covering login, product browsing, product detail, add-to-cart, and cart validation flows.",
+        evidence: "Shows Appium 2 setup, config-driven capabilities, POM structure, screenshots on failure, Allure reporting, and mobile CI planning.",
+        ciStatus: "Manual",
+        schedule: "Daily workflow skeleton",
+      },
+      {
         name: "Playwright-MCP-AI-Framework",
         description: "Personal AI-assisted automation experiment using Playwright MCP for exploratory authoring, with deterministic Playwright TypeScript checks for CI.",
         technologies: ["TypeScript", "Playwright", "MCP", "AI Automation", "GitHub Actions"],

@@ -44,6 +44,7 @@ test.describe('Homepage', () => {
     await expect(page.getByText('Self-directed portfolio').first()).toBeVisible();
     await expect(page.getByRole('heading', { name: 'ITAF-DotNet-CSharp' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Postman-Decoupling-Framework' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Appium-Java-Mobile-Framework' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Playwright-MCP-AI-Framework' })).toBeVisible();
   });
 
