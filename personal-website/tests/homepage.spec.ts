@@ -1,85 +1,77 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test.describe('Homepage', () => {
-  test('displays the full-bleed hero and navigation', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByRole('heading', { name: 'Modern quality engineering, accelerated by AI.' })).toBeVisible();
-    await expect(page.getByText('Quality Engineer / Test Automation Engineer')).toBeVisible();
-
-    await expect(page.getByRole('link', { name: 'Story' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Automation Evidence' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Projects' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Contact' })).toBeVisible();
+test.describe("Portfolio homepage", () => {
+  test("shows recruiter-focused automation positioning and navigation", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "I turn complex systems into reliable, repeatable automation." })).toBeVisible();
+    await expect(page.getByText("Automation Engineer | Quality Engineering & Test Automation", { exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Email me/ }).first()).toHaveAttribute("href", /mailto:/);
+    await expect(page.getByRole("link", { name: "LinkedIn ↗", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "About", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Projects", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Experience", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Evidence", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Contact", exact: true })).toBeVisible();
   });
 
-  test('lets recruiters expand the professional story', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByText('From functional QA to AI-assisted quality engineering.')).toBeVisible();
-    await page.getByText('Read the full career story').click();
-    await expect(page.getByText('I began my testing career with Planit in 2022')).toBeVisible();
-    await expect(page.getByText('My current AEMO engagement')).toBeVisible();
-    await expect(page.getByText('186', { exact: true })).toBeVisible();
-    await expect(page.getByText('Super Nova Award')).toBeVisible();
+  test("filters projects and expands project details", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "Commercial Kitchen CRM" })).toBeVisible();
+    await page.getByRole("button", { name: "Automation" }).click();
+    await expect(page.getByRole("heading", { name: "Playwright TypeScript" })).toBeVisible();
+    await page.getByRole("heading", { name: "Playwright TypeScript" }).locator("xpath=ancestor::article[1]").getByText("More detail").first().click();
+    await expect(page.getByText("A public practice framework showing Playwright fixtures, maintainable selectors, test structure, and CI execution.")).toBeVisible();
   });
 
-  test('shows CI health evidence and metrics', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
-    await expect(page.locator('.metric-card--dark strong', { hasText: '8/8' })).toBeVisible();
-    await expect(page.getByText('framework pipelines green in the latest checked runs')).toBeVisible();
-    await expect(page.getByText('Playwright MCP AI')).toBeVisible();
-    await expect(page.getByText('0 21 * * *')).toBeVisible();
+  test("shows the website and full-stack case studies", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Websites" }).click();
+    await expect(page.getByRole("heading", { name: "RetailChill Refrigeration" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Commercial Kitchen AUS" })).toBeVisible();
+    await page.getByRole("button", { name: "Full-stack" }).click();
+    await expect(page.getByRole("heading", { name: "Commercial Kitchen Canopy Supply" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Venio" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Live site ↗" }).first()).toHaveAttribute("href", "https://commercialkitchencanopysupply.com.au/");
   });
 
-  test('shows the upgraded project portfolio', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
-    await expect(page.getByText('These are personal projects, portfolio frameworks, and lab systems')).toBeVisible();
-    await expect(page.getByText('They are not presented as client-delivered products.')).toBeVisible();
-    await expect(page.getByText('For recruiters and hiring teams')).toBeVisible();
-    await expect(page.getByText('Self-directed portfolio').first()).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'ITAF-DotNet-CSharp' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Postman-Decoupling-Framework' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Appium-Java-Mobile-Framework' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Playwright-MCP-AI-Framework' })).toBeVisible();
+  test("shows experience, stack, and contact", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "Engineering with a quality mindset." })).toBeVisible();
+    await expect(page.getByText("Planit Testing / NRI Australia")).toBeVisible();
+    await expect(page.getByText("Open more evidence")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Tools I use to ship." })).toBeHidden();
+    await expect(page.getByRole("heading", { name: /Let's make it/ })).toBeVisible();
   });
 
-  test('shows the homelab systems showcase', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByRole('strong').filter({ hasText: 'Homelab Systems' })).toBeVisible();
-    await page.getByText('Open the server cupboard').click();
-    await expect(page.getByRole('heading', { name: 'Home Dashboard Next' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Granny Flat Billing' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Main House Energy' })).toBeVisible();
-    await expect(page.getByText('Private repos for home-specific implementation details')).toBeVisible();
+  test("restores the professional story and automation evidence", async ({ page }) => {
+    await page.goto("/");
+    await page.getByText("Read the full career story").click();
+    await expect(page.getByText(/At Judo Bank, I moved from system and integration testing/)).toBeVisible();
+    await expect(page.getByText("186").first()).toBeVisible();
+    await expect(page.getByText("213").first()).toBeVisible();
+    await page.getByText("Open more evidence").click();
+    await page.getByText("Open automation evidence").click();
+    await expect(page.getByText("Cypress").last()).toBeVisible();
+    await expect(page.getByText("8/8")).toBeVisible();
   });
 
-  test('has working project navigation', async ({ page }) => {
-    await page.goto('/');
-
-    await page.getByRole('link', { name: 'View My Work' }).click();
-    await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
+  test("restores homelab screenshots, certifications, and the project library", async ({ page }) => {
+    await page.goto("/");
+    await page.getByText("Open more evidence").click();
+    await page.getByText("Open homelab case studies").click();
+    await expect(page.getByText("Home Dashboard Next")).toBeVisible();
+    await expect(page.getByAltText("Home Dashboard Next")).toBeVisible();
+    await expect(page.getByText("Immich")).toBeVisible();
+    await expect(page.getByText("ISTQB Certified Tester Foundation Level 4.0")).toBeVisible();
+    await page.getByRole("button", { name: "Automation" }).click();
+    await expect(page.getByRole("heading", { name: "Cypress-Automation-Framework" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Appium-Java-Mobile-Framework" })).toBeVisible();
   });
 
-  test('displays contact section', async ({ page }) => {
-    await page.goto('/');
-
-    await expect(page.getByRole('heading', { name: "Interested in automation, testing, or have a project in mind? I'd love to hear from you." })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Email Me' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'LinkedIn' })).toBeVisible();
-  });
-
-  test('is responsive on mobile', async ({ page }) => {
+  test("opens mobile navigation", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/');
-
-    await expect(page.getByRole('heading', { name: 'Modern quality engineering, accelerated by AI.' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Automation Evidence' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
+    await page.goto("/");
+    await page.getByRole("button", { name: "Toggle navigation" }).click();
+    await expect(page.getByRole("link", { name: "Contact", exact: true })).toBeVisible();
   });
 });
